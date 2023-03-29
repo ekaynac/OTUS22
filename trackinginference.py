@@ -3,13 +3,13 @@ import os
 import torch
 
 # Model weight path
-MODELPATH = '/home/otus/Desktop/enesbozuyor/OTUS22-master/Weights/FinalUAV/best16.engine'
+MODELPATH = r'D:\Github\OTUS22\Weights\FinalUAV\best.pt'
 
 # Model
-model = torch.hub.load('ultralytics/yolov5', 'custom',path=MODELPATH)  # or yolov5n - yolov5x6, custom
+model = torch.hub.load(r'D:\Github\OTUS22\yolov5', 'custom',path=MODELPATH, source='local', force_reload=True)  # or yolov5n - yolov5x6, custom
 
 # Inference
-model.conf = 0.2 # NMS confidence threshold
+model.conf = 0.7 # NMS confidence threshold
 #model.iou = 0.45  # NMS IoU threshold
 #model.agnostic = False  # NMS class-agnostic
 #model.multi_label = False  # NMS multiple labels per box
@@ -57,7 +57,7 @@ fontScale = 0.5
 VIDPATH = 0
 
 # Video Capturer
-cap = cv2.VideoCapture("v4l2src device=/dev/video0 ! video/x-raw, width=640, height=480 ! videoconvert ! video/x-raw,format=BGR ! appsink")
+cap = cv2.VideoCapture(0)
 
 cnt = 0
 init = 1
@@ -99,5 +99,4 @@ while(cap.isOpened()):
         break
 cap.release()
 cv2.destroyAllWindows()
-cap.release()
-cv2.destroyAllWindows()
+
